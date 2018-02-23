@@ -1,15 +1,12 @@
 package objects;
 
-import java.util.List;
 
 public class User {
 	
-	 public enum UserType{
-		AFFILIATE,EMPLOYEE,CUSTOMER
-	}
 	
-	private int timeInYrs;
-	private UserType userType;
+	protected float discountFactor;
+	protected int timeInYrs;
+	
 	
 	public int getTimeInYrs() {
 		return timeInYrs;
@@ -17,12 +14,14 @@ public class User {
 	public void setTimeInYrs(int timeInYrs) {
 		this.timeInYrs = timeInYrs;
 	}
-	public UserType getUserType() {
-		return userType;
+	
+	public float getDiscountFactor() {
+		return discountFactor;
 	}
-	public void setUserType(UserType userType) {
-		this.userType = userType;
+	public void setDiscountFactor(float discountFactor) {
+		this.discountFactor = discountFactor;
 	}
+	
 
 	
 

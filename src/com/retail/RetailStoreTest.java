@@ -9,10 +9,12 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import objects.Affiliate;
 import objects.Bill;
 import objects.User;
 import objects.Bill.BillCategory;
-import objects.User.UserType;
+import objects.Employee;
+
 
 public class RetailStoreTest {
 	
@@ -30,13 +32,12 @@ public class RetailStoreTest {
 	@Test
 	public void testUserAsEmployee() {
 		
-		User user = new User();
-		user.setUserType(UserType.EMPLOYEE);
-		user.setTimeInYrs(1);
+		Employee employee = new Employee();
+		employee.setTimeInYrs(1);
 		
 		Bill bill = new Bill();
 		bill.setAmt(1023.4);
-		bill.setUser(user);
+		bill.setUser(employee);
 		
 		double netPayable = store.calculateAmt(bill);
 		double expectedValue=1023.4 - 1023.4*0.3f-35;
@@ -53,13 +54,12 @@ public class RetailStoreTest {
 	@Test
 	public void testUserAsAffiliate() {
 		
-		User user = new User();
-		user.setUserType(UserType.AFFILIATE);
-		user.setTimeInYrs(1);
+		Affiliate affiliate = new Affiliate();
+		affiliate.setTimeInYrs(1);
 		
 		Bill bill = new Bill();
 		bill.setAmt(1023.4);
-		bill.setUser(user);
+		bill.setUser(affiliate);
 		
 		double netPayable = store.calculateAmt(bill);
 		double expectedValue=1023.4 - 1023.4*0.1f - 45;
@@ -76,7 +76,6 @@ public class RetailStoreTest {
 	public void testUserAsOldCustomer() {
 
 		User user = new User();
-		user.setUserType(UserType.CUSTOMER);
 		user.setTimeInYrs(3);
 		
 		Bill bill = new Bill();
@@ -96,7 +95,6 @@ public class RetailStoreTest {
 	public void testNetDiscount() {
 		
 		User user = new User();
-		user.setUserType(UserType.CUSTOMER);
 		user.setTimeInYrs(1);
 		
 		Bill bill = new Bill();
@@ -116,7 +114,6 @@ public class RetailStoreTest {
 	public void testDiscountOnGroceries() {
 		
 		User user = new User();
-		user.setUserType(UserType.CUSTOMER);
 		user.setTimeInYrs(1);
 		
 		Bill bill = new Bill();
@@ -136,13 +133,13 @@ public class RetailStoreTest {
 	@Test
 	public void testNoMultipleDiscounts() {
 		
-		User user = new User();
-		user.setUserType(UserType.AFFILIATE);
-		user.setTimeInYrs(3);
+		Affiliate affiliate = new Affiliate();
+		affiliate.setTimeInYrs(3);
 		
 		Bill bill = new Bill();
 		bill.setAmt(1023.4);
-		bill.setUser(user);
+		bill.setUser(affiliate);
+		bill.setCategory(BillCategory.OTHERS);
 		
 		double netPayable = store.calculateAmt(bill);
 		double expectedValue=1023.4 - 1023.4*0.1f-45;

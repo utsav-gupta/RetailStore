@@ -1,10 +1,8 @@
 package com.retail;
 
-import java.util.Locale.Category;
-
 import objects.Bill;
 import objects.Bill.BillCategory;
-import objects.User.UserType;
+
 
 public class RetailStore {
 
@@ -15,19 +13,13 @@ public class RetailStore {
 		
 		if(bill.getCategory()!=BillCategory.GROCERIES) {
 
-			// Designed to give max percentage discount possible.
+			// If user is neither Employee nor Affiliate but is more than 2 years old
 
-			if(bill.getUser().getTimeInYrs()>=2) {
+			if(bill.getUser().getDiscountFactor() == 0 && bill.getUser().getTimeInYrs()>=2) {
 				discountFactor=0.05f;
 			}
-			if(bill.getUser().getUserType() == UserType.AFFILIATE) {
-				discountFactor=0.1f;
-			}
-			if(bill.getUser().getUserType() == UserType.EMPLOYEE) {
-				discountFactor=0.3f;
-			}
-			if(bill.getUser().getUserType() == (UserType.AFFILIATE)) {
-				discountFactor=0.1f;
+			else {
+				discountFactor = bill.getUser().getDiscountFactor();
 			}
 
 		}
