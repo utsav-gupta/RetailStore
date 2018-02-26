@@ -5,6 +5,6 @@ in eclipse.
 
 2. All the requirements are met and the junits cover all positive scenarios. All junits are running without breaking.
 
-3. The class diagram 
+3. The class diagram is located here
 
-[[https://github.com/utsav-gupta/RetailStore/blob/master/src/RetailStore%20Class%20Diagram.jpg]]
+https://github.com/utsav-gupta/RetailStore/blob/master/src/RetailStore%20Class%20Diagram.jpg
